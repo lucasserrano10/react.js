@@ -1,13 +1,17 @@
+import { eventWrapper } from '@testing-library/user-event/dist/utils'
 import './CampoTexto.css'
+import { useState } from 'react'
 
 const CampoTexto = (props) => {
 
     const placeholderModificada = `${props.placeholder}...` 
 
-    let valor = 'Guilherme Silveira'
+    const [valor,setValor] = useState('')
+
+    let valor = ''
 
     const aoDigitado = (evento) => {
-        valor = evento.target.value
+        setValor(evento.target.value)
         console.log(valor)
     }
 
@@ -16,7 +20,7 @@ const CampoTexto = (props) => {
             <label>
                 {props.label}
             </label>
-            <input value={valor} onChange={aoDigitado} required={props.obrigatorio} placeholder={props.placeholderModificada}/>
+            <input onChange={aoDigitado} required={props.obrigatorio} placeholder={props.placeholderModificada}/>
         </div>
     )
 }
